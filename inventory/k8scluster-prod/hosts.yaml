@@ -1,0 +1,107 @@
+all:
+  hosts:
+    master1:
+      ansible_host: 10.0.104.1
+      ip: 10.0.104.1
+      access_ip: 10.0.104.1
+    master2:
+      ansible_host: 10.0.104.2
+      ip: 10.0.104.2
+      access_ip: 10.0.104.2
+    master3:
+      ansible_host: 10.0.104.3
+      ip: 10.0.104.3
+      access_ip: 10.0.104.3
+    etcd1:
+      ansible_host: 10.0.104.4
+      ip: 10.0.104.4
+      access_ip: 10.0.104.4
+    etcd2:
+      ansible_host: 10.0.104.5
+      ip: 10.0.104.5
+      access_ip: 10.0.104.5
+    etcd3:
+      ansible_host: 10.0.104.6
+      ip: 10.0.104.6
+      access_ip: 10.0.104.6
+    loadbalancer1:
+      ansible_host: 10.0.104.7
+      ip: 10.0.104.7
+      access_ip: 10.0.104.7
+    loadbalancer2:
+      ansible_host: 10.0.104.8
+      ip: 10.0.104.8
+      access_ip: 10.0.104.8
+    worker1:
+      ansible_host: 10.0.104.10
+      ip: 10.0.104.10
+      access_ip: 10.0.104.10
+    worker2:
+      ansible_host: 10.0.104.11
+      ip: 10.0.104.11
+      access_ip: 10.0.104.11
+    worker3:
+      ansible_host: 10.0.104.12
+      ip: 10.0.104.12
+      access_ip: 10.0.104.12
+    worker4:
+      ansible_host: 10.0.104.13
+      ip: 10.0.104.13
+      access_ip: 10.0.104.13
+    worker5:
+      ansible_host: 10.0.104.14
+      ip: 10.0.104.14
+      access_ip: 10.0.104.14
+    worker6:
+      ansible_host: 10.0.104.15
+      ip: 10.0.104.15
+      access_ip: 10.0.104.15
+    worker7:
+      ansible_host: 10.0.104.16
+      ip: 10.0.104.16
+      access_ip: 10.0.104.16
+    worker8:
+      ansible_host: 10.0.104.17
+      ip: 10.0.104.17
+      access_ip: 10.0.104.17
+    worker9:
+      ansible_host: 10.0.104.18
+      ip: 10.0.104.18
+      access_ip: 10.0.104.18
+    worker10:
+      ansible_host: 10.0.104.19
+      ip: 10.0.104.19
+      access_ip: 10.0.104.19
+  children:
+    kube_control_plane:
+      hosts:
+        master1:
+        master2:
+        master3:
+    kube_node:
+      hosts:
+        worker1:
+        worker2:
+        worker3:
+        worker4:
+        worker5:
+        worker6:
+        worker7:
+        worker8:
+        worker9:
+        worker10:
+    etcd:
+      hosts:
+        etcd1:
+        etcd2:
+        etcd3:
+    loadbalancer:
+      hosts:
+        loadbalancer1:
+        loadbalancer2:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
